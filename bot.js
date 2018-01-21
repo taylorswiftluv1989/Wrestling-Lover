@@ -20,7 +20,7 @@ var INTERVAL = 3*60*60*1000; // 3 hours
 var TWITTER_SEARCH_PHRASE = 'Royal Rumble';
 
 // Set max number of tweets to get on the search results each time
-var TWITTER_SEARCH_MAX_RESULTS = 15;
+var TWITTER_SEARCH_MAX_RESULTS = 10;
 
 // Set tweets to reply
 var TWEETS_TO_REPLY = [
