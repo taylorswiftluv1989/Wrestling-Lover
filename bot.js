@@ -159,11 +159,4 @@ setInterval(BotStart, INTERVAL);
 
 
 
-// git add .
-// git commit -am ""
-// git push heroku master
 
-// hello, i'm testing my twitter bot application which features is follow, tweet based on the hash tags or simples text.
-// the bot has Set interval time to perform the action and the max number of tweets to get on the search results each time is  10. 
-// request to allow me to use my twitter bot back.
-// Thnank you. 
