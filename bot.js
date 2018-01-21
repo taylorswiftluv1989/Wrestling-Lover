@@ -1,13 +1,3 @@
-/*!
- * Bot.js
- * A Node JS Twitter bot that periodically searches for tweets and then like, reply and follow automatically.
- * The bot saves tweets ids already processed to avoid interact with the same ones again.
- * Version 1.0.0
- * Created by Carlos E. Torres (carlos.torres@cacira.com)
- * http://cacira.com
- * http://cetorres.com
- * Date: 02/09/2017
- */
 
 // Create object reference to libs
 var Twit = require('twit');
@@ -30,7 +20,7 @@ var INTERVAL = 3*60*60*1000; // 3 hours
 var TWITTER_SEARCH_PHRASE = 'Royal Rumble';
 
 // Set max number of tweets to get on the search results each time
-var TWITTER_SEARCH_MAX_RESULTS = 20;
+var TWITTER_SEARCH_MAX_RESULTS = 15;
 
 // Set tweets to reply
 var TWEETS_TO_REPLY = [
@@ -156,7 +146,5 @@ function BotStart() {
 // Start bot and timer
 BotStart();
 setInterval(BotStart, INTERVAL);
-
-
 
 
