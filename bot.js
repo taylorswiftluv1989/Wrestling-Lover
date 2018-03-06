@@ -1,3 +1,5 @@
+// version v 3.2
+// wwe-fan-lover
 
 // Create object reference to libs
 var Twit = require('twit');
@@ -14,28 +16,20 @@ var config = require('./config.js');
 var DB_FILE = "bot_db.txt";
 
 // Set interval time. Try to use a not so small interval to avoid Twitter to lock your account.
-var INTERVAL = 3*60*60*1000; // 3 hours
+var INTERVAL = 60*60*1000; //  hours
 
 // Set Twitter search phrase. You can use hash tags or simples text. Hash tags works better. Separate with OR or AND.
-var TWITTER_SEARCH_PHRASE = 'Royal Rumble';
+var TWITTER_SEARCH_PHRASE = 'wwe'; // and The Champ Is Here
+//var TWITTER_SEARCH_PHRASE2 = 'india'; // and The Champ Is Here
 
 // Set max number of tweets to get on the search results each time
-var TWITTER_SEARCH_MAX_RESULTS = 10;
+var TWITTER_SEARCH_MAX_RESULTS = 5;
 
-// Set tweets to reply
-var TWEETS_TO_REPLY = [
-  "Braun Strowman Attacks Brock Lesnar & Kane | WWE RAW 8th January 2017 http://youtu.be/EAmuWQbeQzM?a",
-  "WWE Royal Rumble 2018 Entry Predictions and Surprise Returns https://youtu.be/yp59KRpb4zY ",
-  "Mr McMahon fires peoples (including donald trump) https://www.youtube.com/watch?v=0EjnfZHVXY8 "
-];
+// wwe - fan - bot
+var tweet_count = 0;
 
-// Init Twit lib
-// var Bot = new Twit({
-//   consumer_key: TWITTER_CONSUMER_KEY,
-//   consumer_secret: TWITTER_CONSUMER_SECRET,
-//   access_token: TWITTER_ACCESS_TOKEN,
-//   access_token_secret: TWITTER_ACCESS_TOKEN_SECRET
-// });
+const Spinner = require('node-spintax');
+
 var Bot = new Twit(config);
 
 function BotStart() {
@@ -43,7 +37,7 @@ function BotStart() {
   var query = {
     q: TWITTER_SEARCH_PHRASE,
     result_type: "recent",
-    lang: 'en',
+    //lang: 'en',
     count: TWITTER_SEARCH_MAX_RESULTS
   }
 
@@ -73,7 +67,7 @@ function BotStart() {
           }
 
           var processed_tweets = [];
-
+//for loop
           for (var i = 0; i < data.statuses.length; i++) {
 
             // Tweet id
@@ -82,9 +76,68 @@ function BotStart() {
             // User id and handle
             var userId = data.statuses[i].user.id_str;
             var userHandle = data.statuses[i].user.screen_name;
+            var username = data.statuses[i].user.name;
 
             console.log('userHandle ' + userHandle);
+            //console.log('username ' + username);
 
+//
+// Youtube_links
+//
+
+var Youtube_links = new Spinner('{John Cena 16 WWE World Championship Victories {and|&} share {your|ur} {comments|comment|thought|idea|opinion|view|impression} on {youtube|Utube} {thx|thanks|Thnx|Thank You|} {!|!!|.} https://youtu.be/nQ4kZFJNW0Q |10 Amazing Facts Prove that John Cena Is A Superhuman. {#wwe |#WrestlingLover} https://youtu.be/lzo2zk01RJ0 |The Evolution of John Cena Photos collection {and|&} share {your|ur} {comments|comment|thought|idea|opinion|view|impression} on {youtube|Utube} {thx|thanks|Thnx|Thank You|} {!|!!|.} https://youtu.be/zoHIOG4jfIM |WWE Top 10 Greatest Returns of 2017 {and|&} share {your|ur} {comments|comment|thought|idea|opinion|view|impression} on {youtube|Utube} {thx|thanks|Thnx|Thank You|} {!|!!|.} https://youtu.be/xL60idusgkY |Top 100 Kisses In WWE History  {and|&} share {your|ur} {comments|comment|thought|idea|opinion|view|impression} on {youtube|Utube} {thx|thanks|Thnx|Thank You|} {!|!!|.} https://youtu.be/ftz-0vR4jvo |Top most WWE Superstar Who Dated Kelly Kelly {and|&} share {your|ur} {comments|comment|thought|idea|opinion|view|impression} on {youtube|Utube} {thx|thanks|Thnx|Thank You|} {!|!!|.} https://youtu.be/poxdpPI1dRw |Top 10 Surprise Returns In Royal Rumble {and|&} share {your|ur} {comments|comment|thought|idea|opinion|view|impression} on {youtube|Utube} {thx|thanks|Thnx|Thank You|} {!|!!|.} https://youtu.be/zDFWSZairRU |Mr McMahon fires peoples (including donald trump) |wwe top fires {and|&} share {your|ur} {comments|comment|thought|idea|opinion|view|impression} on {youtube|Utube} {thx|thanks|Thnx|Thank You|} {!|!!|.} https://youtu.be/0EjnfZHVXY8}');
+
+// Returns total number of possible variations: 
+var variationsCount_Youtube_links = Youtube_links.countVariations();
+ 
+// Returns list of all possible variations: 
+var allVariations_Youtube_links = Youtube_links.unspin();
+//console.log("allVariations_Youtube_links: " + allVariations_Youtube_links );
+
+var spintax_Youtube_links =allVariations_Youtube_links[Math.floor(Math.random()*allVariations_Youtube_links.length)];
+//console.log("spintax_Youtube_links: " + spintax_Youtube_links );
+
+//
+// starting_text
+//
+
+var starting_text = new Spinner('{Hi|Hey|Hello|Howdy|Hello there|Hi there|Hey}{!|!!|.} ');
+
+// Returns total number of possible variations: 
+var variationsCount_starting_text = starting_text.countVariations();
+ 
+// Returns list of all possible variations: 
+var allVariations_starting_text = starting_text.unspin();
+//console.log("allVariations_starting_text: " + allVariations_starting_text );
+
+var spintax_starting_text =allVariations_starting_text[Math.floor(Math.random()*allVariations_starting_text.length)];
+//console.log("spintax_starting_text: " + spintax_starting_text );
+
+//
+// request_to_watch
+//
+
+var request_to_watch = new Spinner('{please|plz} {check out|look at|stop by|go to|watch out} {my|our|this} video');
+
+// Returns total number of possible variations: 
+var variationsCount_request_to_watch = request_to_watch.countVariations();
+ 
+// Returns list of all possible variations: 
+var allVariations_request_to_watch = request_to_watch.unspin();
+//console.log("allVariations_request_to_watch: " + allVariations_request_to_watch );
+
+var spintax_request_to_watch =allVariations_request_to_watch[Math.floor(Math.random()*allVariations_request_to_watch.length)];
+//console.log("spintax_request_to_watch: " + spintax_request_to_watch );
+
+var userHandle1 = "smitpatel108";
+var username1 = "smit patel";
+
+// final_tweet
+var final_tweet = "@" + userHandle +" "+spintax_starting_text + username +" "+spintax_request_to_watch +", "+spintax_Youtube_links;
+
+console.log('\n' +"final_tweet: " + final_tweet ); //'\n' + 
+
+                        
             // If id doesn't exist on database, process it
             if (bot_db.indexOf(id) == -1) {
 
@@ -96,36 +149,22 @@ function BotStart() {
                 }
                 });
 
-              // Like
-              // Bot.post('favorites/create', {id: id}, function(err, response){
-              //       if (err) {
-              //          console.log("> Error: Tweet " + id + " could not be favorited. " + err);
-              //       }
-              //   });
-
-              // Reply
-              var textToReply = TWEETS_TO_REPLY[Math.floor(Math.random()*TWEETS_TO_REPLY.length)];
-              textToReply = "@" + userHandle + ". " + textToReply ;
-              // + " -" + Math.floor(Math.random()*100)
-              Bot.post('statuses/update', {status: textToReply, in_reply_to_status_id: id}, function(err, response){
+              
+              Bot.post('statuses/update', {status: final_tweet, in_reply_to_status_id: id}, function(err, response){
                     if (err) {
                       console.log("> Error: Status could not be updated. " + err);
                     }
                 });
+             
 
-              // Follow
-              Bot.post('friendships/create', {user_id: userId, follow: "true"}, function(err, response){
-                    if (err) {
-                      console.log("> Error: Could not follow user " + userId + ". " + err);
-                    }
-                });
 
             }
 
           }
 
-          console.log("done to be continue... ");
-          
+          console.log( '\n' +"tweet done to be continue... ");
+          console.log('data.statuses.length ' + data.statuses.length);
+          console.log('tweet_count ' + tweet_count);
           // Log of processed tweets
           if (processed_tweets.length > 0) {
             console.log("> Tweets processed: " + processed_tweets);
@@ -146,5 +185,4 @@ function BotStart() {
 // Start bot and timer
 BotStart();
 setInterval(BotStart, INTERVAL);
-
 
